@@ -1,7 +1,63 @@
 import 'package:flutter/material.dart';
 import 'listview_page.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MaterialApp(
+      home: EditPage(),
+    ));
+
+class EditPage extends StatefulWidget {
+  @override
+  EditPageState createState() {
+    return EditPageState();
+  }
+}
+
+class EditPageState extends State<EditPage> {
+  String text = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: Icon(Icons.all_inclusive),
+        title: Text('Hello Flutter'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.access_time),
+            tooltip: 'time',
+            onPressed: null,
+          ),
+          IconButton(
+            icon: Icon(Icons.access_alarm),
+            tooltip: 'alarm',
+            onPressed: null,
+          ),
+          IconButton(
+            icon: Icon(Icons.ac_unit),
+            tooltip: 'unit',
+            onPressed: null,
+          ),
+        ],
+      ),
+      body: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              TextField(
+                decoration: InputDecoration(hintText: 'plz input somthing'),
+                onSubmitted: (String content) {
+                  setState(() {
+                    this.text += (content + "\n");
+                  });
+                },
+              ),
+              Text(this.text)
+            ],
+          )),
+    );
+  }
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
