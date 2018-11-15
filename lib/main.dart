@@ -52,7 +52,49 @@ class EditPageState extends State<EditPage> {
                   });
                 },
               ),
-              Text(this.text)
+              Text(this.text),
+              Container(
+                height: 100,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                        width: 100,
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          image: DecorationImage(
+                              image: AssetImage('imgs/t1.png'),
+                              fit: BoxFit.scaleDown),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 9.0,
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+              Container(
+                height: 100,
+                margin: EdgeInsets.only(top: 20),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      width: 80,
+                      color: Colors.red,
+                    ),
+                    Expanded(
+                        child: Container(
+                      margin: EdgeInsets.only(left: 10),
+                      width: 80,
+                      color: Colors.yellow,
+                    )),
+                    Container(
+                      width: 20,
+                      margin: EdgeInsets.only(left: 10),
+                      color: Colors.teal,
+                    )
+                  ],
+                ),
+              )
             ],
           )),
     );
