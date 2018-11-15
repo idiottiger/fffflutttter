@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'listview_page.dart';
 
 void main() => runApp(MaterialApp(
@@ -14,6 +17,24 @@ class EditPage extends StatefulWidget {
 
 class EditPageState extends State<EditPage> {
   String text = "";
+
+  @override
+  void initState() {
+    super.initState();
+    this.requestGetJson().then((ret) {
+      print("rsp: content ${ret}");
+    });
+  }
+
+  Future<String> requestGetJson() async {
+    var rsp = await http.get('https://swapi.co/api/people',
+        headers: {"Accept": "application/json"});
+
+    if (rsp != null) {
+      return rsp.body;
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
