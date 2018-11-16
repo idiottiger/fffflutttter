@@ -3,12 +3,13 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'listview_page.dart';
+import 'tab_page.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
   debugPaintSizeEnabled = true;
   runApp(MaterialApp(
-    home: EditPage(),
+    home: TabPage(),
   ));
 }
 
