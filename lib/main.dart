@@ -9,8 +9,50 @@ import 'package:flutter/rendering.dart';
 void main() {
   debugPaintSizeEnabled = true;
   runApp(MaterialApp(
-    home: TabPage(),
+    initialRoute: '/',
+    routes: {
+      '/': (context) => FirstPage(),
+      '/sec': (context) => SecondPage(),
+    },
   ));
+}
+
+class FirstPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('PAGE_1'),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/sec');
+          },
+          child: Text('PAGE_1'),
+        ),
+      ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('PAGE_2'),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('PAGE_2'),
+        ),
+      ),
+    );
+  }
 }
 
 class EditPage extends StatefulWidget {
