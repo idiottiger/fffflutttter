@@ -8,13 +8,78 @@ import 'package:flutter/rendering.dart';
 
 void main() {
   debugPaintSizeEnabled = true;
+  // runApp(MaterialApp(
+  //   initialRoute: '/',
+  //   routes: {
+  //     '/': (context) => FirstPage(),
+  //     '/sec': (context) => SecondPage(),
+  //   },
+  // ));
   runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      '/': (context) => FirstPage(),
-      '/sec': (context) => SecondPage(),
-    },
+    home: FromPage(),
   ));
+}
+
+class PhotoHeroWidget extends StatelessWidget {
+  final String tag;
+  final VoidCallback onTap;
+  final double width;
+
+  PhotoHeroWidget({Key key, this.tag, this.width, this.onTap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: Hero(
+        tag: tag,
+        child: GestureDetector(
+          onTap: onTap,
+          child: Image.asset(tag, fit: BoxFit.fill),
+        ),
+      ),
+    );
+  }
+}
+
+class FromPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('From Page'),
+      ),
+      body: Center(
+        child: PhotoHeroWidget(
+            tag: 'imgs/t1.png',
+            width: 100.0,
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute<void>(builder: (BuildContext context) {
+                return DesiPage();
+              }));
+            }),
+      ),
+    );
+  }
+}
+
+class DesiPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Des Page'),
+      ),
+      body: Container(
+          color: Colors.cyanAccent,
+          child: Center(
+            child:
+                PhotoHeroWidget(tag: 'imgs/t1.png', width: 300.0, onTap: () {}),
+          )),
+    );
+  }
 }
 
 class FirstPage extends StatelessWidget {
